@@ -28,7 +28,7 @@ if ($url = $_REQUEST['url'] ?? false) {
             ->waitUntilNetworkIdle($_REQUEST['strict'] ?? 1)
             ->windowSize(1200, 900)
             ->showBrowserHeaderAndFooter()
-            ->delay($_REQUEST['delay'] ?? 3000)
+            ->delay($_REQUEST['delay'] ?? 5000)
             ->margins(12, 5, 12, 5)
             ->pages($_REQUEST['pages'] ?? '')
             ->format($_REQUEST['size'] ?? 'A4')
