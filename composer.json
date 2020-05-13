@@ -1,0 +1,7 @@
+{
+    "require": {
+        "spatie/browsershot": "^3.35",
+        "ramsey/uuid": "^4.0",
+        "vlucas/phpdotenv": "^4.1"
+    }
+}

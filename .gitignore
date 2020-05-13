@@ -1,0 +1,4 @@
+.env
+/vendor
+/public/*
+!public/index.php
