@@ -16,7 +16,7 @@ if (! in_array($currentIp, $whitelist)) {
 }
 
 if ($url = $_REQUEST['url'] ?? false) {
-    $file = 'pdf/'.Uuid::uuid4().'.pdf';
+    $file = Uuid::uuid4().'.pdf';
     $browser = Browsershot::url($url);
     if ($path = getenv('NODE_PATH')) {
         $browser->setIncludePath($path);
@@ -29,15 +29,18 @@ if ($url = $_REQUEST['url'] ?? false) {
             ->windowSize(1200, 900)
             ->showBrowserHeaderAndFooter()
             ->delay($_REQUEST['delay'] ?? 5000)
-            ->margins(12, 5, 12, 5)
+            ->margins(0, 0, 10, 10)
             ->pages($_REQUEST['pages'] ?? '')
             ->format($_REQUEST['size'] ?? 'A4')
-            ->save('./'.$file);
+            ->setOption('preferCSSPageSize', true);
 
-        if (file_exists(__DIR__.'/'.$file)) {
-            header('Location:/'.$file);
+            header("Cache-Control: public");
+            header("Content-Description: File Transfer");
+            header("Content-Disposition: attachment; filename=$file");
+            header("Content-Type: application/pdf");
+            header("Content-Transfer-Encoding: binary");
+            echo $browser->pdf();
             die();
-        }
     } catch (\Exception $e) {}
 
     header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
