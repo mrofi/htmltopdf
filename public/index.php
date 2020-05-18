@@ -29,7 +29,7 @@ if ($url = $_REQUEST['url'] ?? false) {
             ->windowSize(1200, 900)
             ->showBrowserHeaderAndFooter()
             ->delay($_REQUEST['delay'] ?? 5000)
-            ->margins(0, 0, 10, 10)
+            ->margins(0, 0, 10, 0)
             ->pages($_REQUEST['pages'] ?? '')
             ->format($_REQUEST['size'] ?? 'A4')
             ->setOption('preferCSSPageSize', true);
