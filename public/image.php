@@ -51,7 +51,7 @@ if ($url = $_REQUEST['url'] ?? false) {
             die("data:image/{$type};base64,".$browser->base64Screenshot());
         }
 
-        $file = Uuid::uuid4().".{$type}";
+        $file = ($_REQUEST['filename'] ?? Uuid::uuid4()).".{$type}";
 
         header("Cache-Control: public");
         header("Content-Description: File Transfer");
