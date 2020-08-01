@@ -23,7 +23,7 @@ $currentIp = $_SERVER['REMOTE_ADDR'];
 $whitelist = explode(',', getenv('ALLOWED_IPS'));
 
 if (! in_array($currentIp, $whitelist)) {
-    die('Access not allowed');
+    die('Access not allowed. '.$currentIp);
 }
 
 if ($url = $_REQUEST['url'] ?? false) {
